@@ -1,0 +1,26 @@
+Main: main information about me
+
+Blogs: All blogs
+Blog:
+id: pk
+title
+description
+contentPath
+date
+hashtag - fg hashtag
+
+HashTag:
+id
+content
+
+Projects: all projects
+
+project:
+id: pk
+title
+description
+contentPath
+date
+hashtag - fg hashtag
+
+

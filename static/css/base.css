@@ -27,9 +27,8 @@ a, a:hover, a:active, a:focus {
 .container {
     display: flex;
     flex-direction: row;
-    align-items: left;
-    justify-content: space-between;
-    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar {

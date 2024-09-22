@@ -3,5 +3,5 @@ from django.http import request
 
 # Create your views here.
 
-def index(request):
+def BlogsView(request):
     return render(request, "blogs/blogs.html")

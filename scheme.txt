@@ -22,6 +22,3 @@ description
 contentPath
 date
 hashtag - fg hashtag
-
-git token:
-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

@@ -6,4 +6,5 @@ app_name = "blogs"
 
 urlpatterns = [
     path("", views.BlogsView, name = "blogs"),
+    path("hashtag/<int:id>", views.BlogsWithHashtagView, name = "blogsWithHashtag"),
 ]

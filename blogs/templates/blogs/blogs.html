@@ -1,9 +1,46 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block head-links %}
+<link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
+{% endblock head-links %}
+
 
 {% block title %}
-Bloglar
+Blogs
 {% endblock title %}
 
+{% block header %}
+Hamma bloglar
+{% endblock header %}
+
 {% block body %}
-Bloglar
+
+<div class="all-hashtags">
+    <div class="hashtag">
+        <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">Hammasi</h3></a>
+    </div>
+    {% for hashtag in hashtags %}
+        <div class="hashtag">
+            <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="blogs">
+    {% for blog in blogs %}
+        <div class="blog">
+            <h2 class="text-main">{{ blog.title }}</h2>
+            <h4 class="text-muted">{{ blog.description | truncatechars:100 }}</h4>
+            <div class="blog-hashtags">
+                {% for hashtag in hashtags %}
+                    <div class="blog-hashtag">
+                        <h3 class = "blog-hashtag-content text-muted">{{ hashtag.content }}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    {% endfor %}
+</div>
 {% endblock body %}

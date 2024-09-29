@@ -1,8 +1,62 @@
 {% extends "base.html" %}
+
 {% block title %}
-SALOM
+    Backend Developer Portfolio
 {% endblock title %}
 
 {% block body %}
-    
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">[Your Name]</span>, Backend Developer</h1>
+                <p>Specializing in building scalable, high-performance backend solutions.</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <section id="about" class="about section">
+            <h2>About Me</h2>
+            <p>I am a backend developer with experience in building robust backend systems. I am proficient in Node.js, Python, and databases.</p>
+        </section>
+
+        <section id="skills" class="skills section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <h3>Node.js</h3>
+                    <p>Building fast and scalable web apps.</p>
+                </div>
+                <div class="skill">
+                    <h3>Python</h3>
+                    <p>Automation, scripting, and web development.</p>
+                </div>
+                <div class="skill">
+                    <h3>Databases</h3>
+                    <p>SQL & NoSQL databases, indexing, and optimization.</p>
+                </div>
+                <div class="skill">
+                    <h3>API Development</h3>
+                    <p>Designing and building RESTful APIs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience section">
+            <h2>Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <h3>Senior Backend Developer - Company A</h3>
+                    <p>Worked on high-scale applications with millions of users.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Backend Developer - Company B</h3>
+                    <p>Built microservices architecture for business-critical systems.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock body %}
+
+{% block jsLinks %}
+    <script src="js/main.js"></script>
+{% endblock jsLinks %}

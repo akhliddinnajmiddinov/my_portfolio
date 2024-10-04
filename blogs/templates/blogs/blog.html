@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head-links %}
+    <link rel="stylesheet" href="{% static 'blogs/css/blog.css' %}">
+{% endblock head-links %}
+
+
+{% block title %}
+    {{ blog.title }}
+{% endblock title %}
+
+{% block header %}
+Blog
+{% endblock header %}
+
+{% block body %}
+    <a href = "{% url 'blogs:blog' blog.slug %}">
+        <div class="blog">
+            <img class = "blog-pic" src="{{ blog.imageField.url }}" alt="">
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.description | truncatechars:100 }}</p>
+            <!-- <div class="blog-hashtags">
+                {% for hashtag in hashtags %}
+                    <div class="blog-hashtag">
+                        <h3 class = "blog-hashtag-content text-muted">{{ hashtag.content }}</h3>
+                    </div>
+                {% endfor %}
+            </div> -->
+        </div>
+    </a>
+{% endblock body %}

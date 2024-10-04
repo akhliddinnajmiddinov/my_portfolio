@@ -23,3 +23,11 @@ def BlogsWithHashtagView(request, id):
         "blogs": blogs
     }
     return render(request, "blogs/blogs.html", context=context)
+
+
+def BlogView(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    context = {
+        "blog": blog
+    }
+    return render(request, "blogs/blog.html", context=context)

@@ -11,6 +11,11 @@ body {
     background-color: #f4f4f9;
 }
 
+.container {
+
+    
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -148,6 +153,7 @@ footer {
 footer .social-links a {
     margin: 0 10px;
     color: #ff4d5a;
+    font-size: 30px;
 }
 
 footer .social-links a:hover {

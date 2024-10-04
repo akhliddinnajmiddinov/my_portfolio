@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head-links %}
-<link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'blogs/css/blogs.css' %}">
 {% endblock head-links %}
 
 
@@ -16,31 +16,48 @@ Hamma bloglar
 
 {% block body %}
 
-<div class="all-hashtags">
-    <div class="hashtag">
-        <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">Hammasi</h3></a>
-    </div>
-    {% for hashtag in hashtags %}
-        <div class="hashtag">
-            <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="blogs">
-    {% for blog in blogs %}
-        <div class="blog">
-            <h2 class="text-main">{{ blog.title }}</h2>
-            <h4 class="text-muted">{{ blog.description | truncatechars:100 }}</h4>
-            <div class="blog-hashtags">
-                {% for hashtag in hashtags %}
-                    <div class="blog-hashtag">
-                        <h3 class = "blog-hashtag-content text-muted">{{ hashtag.content }}</h3>
-                    </div>
-                {% endfor %}
+<section id = "blogs" class="blogs section">
+    <h2>Bloglar</h2>
+    <div class="all-hashtags">
+        {% if queriedHashtag %} 
+            <div class="hashtag">
+                <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">Hammasi</h3></a>
             </div>
-            
-        </div>
-    {% endfor %}
-</div>
+        {% else %}
+                <div class="hashtag hashtag-selected">
+                    <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">Hammasi</h3></a>
+                </div>
+        {% endif %}
+        
+        {% for hashtag in hashtags %}
+            {% if queriedHashtag and queriedHashtag.content == hashtag.content %} 
+                <div class="hashtag hashtag-selected">
+                    <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+                </div>
+            {% else %}
+                <div class="hashtag">
+                    <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="blogs-grid">
+        {% for blog in blogs %}
+            <a href = "{% url 'blogs:blog' blog.slug %}">
+                <div class="blog">
+                    <img class = "blog-pic" src="{{ blog.imageField.url }}" alt="">
+                    <h3>{{ blog.title }}</h3>
+                    <p>{{ blog.description | truncatechars:100 }}</p>
+                    <!-- <div class="blog-hashtags">
+                        {% for hashtag in hashtags %}
+                            <div class="blog-hashtag">
+                                <h3 class = "blog-hashtag-content text-muted">{{ hashtag.content }}</h3>
+                            </div>
+                        {% endfor %}
+                    </div> -->
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
 {% endblock body %}

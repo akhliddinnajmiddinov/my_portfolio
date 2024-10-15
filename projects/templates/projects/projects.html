@@ -1,9 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head-links %}
+    <link rel="stylesheet" href="{% static 'projects/css/projects.css' %}">
+{% endblock head-links %}
+
 
 {% block title %}
 Projects
 {% endblock title %}
 
+{% block header %}
+All projects
+{% endblock header %}
+
 {% block body %}
-Projects
+
+<section id = "blogs" class="blogs section">
+    <h2>Projects</h2>
+    <div class="all-hashtags">
+        {% if queriedHashtag %} 
+            <div class="hashtag">
+                <a href="{% url 'projects:projects' %}"><h3 class = "hashtag-content">All</h3></a>
+            </div>
+        {% else %}
+                <div class="hashtag hashtag-selected">
+                    <a href="{% url 'projects:projects' %}"><h3 class = "hashtag-content">All</h3></a>
+                </div>
+        {% endif %}
+        
+        {% for hashtag in hashtags %}
+            {% if queriedHashtag and queriedHashtag.content == hashtag.content %} 
+                <div class="hashtag hashtag-selected">
+                    <a href="{% url 'projects:projectsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+                </div>
+            {% else %}
+                <div class="hashtag">
+                    <a href="{% url 'projects:projectsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="blogs-grid">
+        {% for project in projects %}
+            <a href = "{% url 'projects:project' project.slug %}">
+                <div class="blog">
+                    <img class = "blog-pic" src="{{ project.imageField.url }}" alt="">
+                    <h3>{{ project.title }}</h3>
+                    <div>
+                        {{ project.mini_description|truncatechars:100 }}
+                    </div>
+                    <div class = "blog-date">
+                        <i class="fa-solid fa-pen"></i><p class = "date-created">{{ project.dateCreated|date:"Y-m-d" }}</p>
+                        <i class="fa-solid fa-eye"></i><span class = "views-count">{{ project.viewsCount }}</span>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
 {% endblock body %}

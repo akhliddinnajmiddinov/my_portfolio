@@ -11,21 +11,21 @@ Blogs
 {% endblock title %}
 
 {% block header %}
-Hamma bloglar
+All blogs
 {% endblock header %}
 
 {% block body %}
 
 <section id = "blogs" class="blogs section">
-    <h2>Bloglar</h2>
+    <h2>All blogs</h2>
     <div class="all-hashtags">
         {% if queriedHashtag %} 
             <div class="hashtag">
-                <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">Hammasi</h3></a>
+                <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">All</h3></a>
             </div>
         {% else %}
                 <div class="hashtag hashtag-selected">
-                    <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">Hammasi</h3></a>
+                    <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">All</h3></a>
                 </div>
         {% endif %}
         
@@ -47,14 +47,13 @@ Hamma bloglar
                 <div class="blog">
                     <img class = "blog-pic" src="{{ blog.imageField.url }}" alt="">
                     <h3>{{ blog.title }}</h3>
-                    <p>{{ blog.description | truncatechars:100 }}</p>
-                    <!-- <div class="blog-hashtags">
-                        {% for hashtag in hashtags %}
-                            <div class="blog-hashtag">
-                                <h3 class = "blog-hashtag-content text-muted">{{ hashtag.content }}</h3>
-                            </div>
-                        {% endfor %}
-                    </div> -->
+                    <div>
+                        {{ blog.mini_description|truncatechars:100 }}
+                    </div>
+                    <div class = "blog-date">
+                        <i class="fa-solid fa-pen"></i><p class = "date-created">{{ blog.dateCreated|date:"Y-m-d" }}</p>
+                        <i class="fa-solid fa-eye"></i><span class = "views-count">{{ blog.viewsCount }}</span>
+                    </div>
                 </div>
             </a>
         {% endfor %}

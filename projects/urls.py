@@ -1,8 +1,11 @@
 from django.urls import path
 from . import views
 
-app_name = 'projects'
+
+app_name = "projects"
 
 urlpatterns = [
-    path("", views.index, name = "projects"),
+    path("", views.ProjectsView, name = "projects"),
+    path("<str:slug>", views.ProjectView, name = "project"),
+    path("hashtag/<int:id>", views.ProjectsWithHashtagView, name = "projectsWithHashtag"),
 ]

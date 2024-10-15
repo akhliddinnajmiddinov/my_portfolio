@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head-links %}
+    <link rel="stylesheet" href="{% static 'projects/css/project.css' %}">
+{% endblock head-links %}
+
+
+{% block title %}
+    {{ project.title }}
+{% endblock title %}
+
+{% block header %}
+Project
+{% endblock header %}
+
+{% block body %}
+    <div class = "back-to">
+        <i class="fa-solid fa-circle-left"></i><a href="{% url 'projects:projects' %}">Back to projects</a>
+    </div>
+    <div class="blog">
+        <h3 class = "title">{{ project.title }}</h3>
+        <i class="fa-solid fa-pen"></i><span class = "date-created">{{ project.dateCreated | date:"Y-m-d" }} by Akhliddin</span>
+        <i class="fa-solid fa-eye"></i><span class = "views-count">{{ project.viewsCount }}</span>
+        <div class = "content">
+            {{ project.description|safe }}
+        </div>
+    </div>
+{% endblock body %}

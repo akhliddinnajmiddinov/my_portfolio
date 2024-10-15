@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Hashtag, Blog
+from .models import HashtagForBlog, Blog
 
 # Register your models here.
-admin.site.register(Hashtag)
+admin.site.register(HashtagForBlog)
 admin.site.register(Blog)

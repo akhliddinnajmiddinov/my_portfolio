@@ -1,10 +1,11 @@
 from django.db import models
 from datetime import datetime
 from django.template.defaultfilters import slugify
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
-class Hashtag(models.Model):
+class HashtagForBlog(models.Model):
     content = models.CharField(max_length=100)
 
     def __str__(self):
@@ -12,11 +13,12 @@ class Hashtag(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = RichTextField()
+    mini_description = models.CharField(max_length=300, default="")
     dateCreated = models.DateTimeField(default=datetime.now())
-    imageField = models.ImageField(upload_to="blogs/blogs_pics", default=None)
+    imageField = models.ImageField(upload_to="blogs/blogs_pics", default="blogs/blogs_pics/default.png", null = True)
     viewsCount = models.IntegerField(default=0)
-    hashtags = models.ManyToManyField(Hashtag, blank = True, related_name = "posts")
+    hashtags = models.ManyToManyField(HashtagForBlog, blank = True, related_name = "posts")
     slug = models.CharField(max_length=1000, null=True, blank=True)
 
     def __str__(self):

@@ -17,26 +17,26 @@ All blogs
 {% block body %}
 
 <section id = "blogs" class="blogs section">
-    <h2>All blogs</h2>
+    <h1>All blogs</h1>
     <div class="all-hashtags">
         {% if queriedHashtag %} 
             <div class="hashtag">
-                <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">All</h3></a>
+                <a href="{% url 'blogs:blogs' %}"><h5 class = "hashtag-content">All</h5></a>
             </div>
         {% else %}
                 <div class="hashtag hashtag-selected">
-                    <a href="{% url 'blogs:blogs' %}"><h3 class = "hashtag-content">All</h3></a>
+                    <a href="{% url 'blogs:blogs' %}"><h5 class = "hashtag-content">All</h5></a>
                 </div>
         {% endif %}
         
         {% for hashtag in hashtags %}
             {% if queriedHashtag and queriedHashtag.content == hashtag.content %} 
                 <div class="hashtag hashtag-selected">
-                    <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+                    <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h5 class = "hashtag-content">{{ hashtag.content }}</h5></a>
                 </div>
             {% else %}
                 <div class="hashtag">
-                    <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h3 class = "hashtag-content">{{ hashtag.content }}</h3></a>
+                    <a href="{% url 'blogs:blogsWithHashtag' hashtag.pk %}"><h5 class = "hashtag-content">{{ hashtag.content }}</h5></a>
                 </div>
             {% endif %}
         {% endfor %}
